@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mostly Fluid - Quiz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      /*
+      These are the default styles. No need to change these.
+      */
+      @import url(https://fonts.googleapis.com/css?family=Roboto);
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .title {
+        font-size: 2.5em;
+        text-align: center;
+      }
+
+      .dark_blue {
+        background-color: #2A457A;
+        color: #efefef;
+      }
+
+      .light_blue {
+        background-color: #099DD9;
+      }
+    </style>
+    <style type="text/css">
+      /*
+      These are the responsive styles.
+      */
+      html, body, main {
+        width: 100%;
+        height: 100%;
+      }
+        nav {
+        width: 300px;
+        height: 100%;
+        position: absolute;
+        transform: translate(-300px, 0);
+        transition: transform 0.3s ease;
+      }
+      #menu {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        padding: 1em;
+      }
+      #menu svg {
+        width: 32px;
+        fill: #E0E0E0;
+      }
+      
+      @media screen and (min-width: 600px) {
+        nav {
+          position: relative;
+          transform: translate(0, 0);
+        }
+        body {
+          display: flex;
+          flex-flow: row nowrap;
+        }
+        main {
+          width: auto;
+          flex-grow: 1;
+        }
+        #menu {
+          display: none;
+        }
+      }
+      
+      nav.open {
+        transform: translate(0, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="drawer" class="dark_blue">
+      <p class="title">Off Canvas</p>
+      <p>Click outside the drawer to close</p>
+    </nav>
+    <main class="light_blue">
+      <a id="menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+        </svg>
+      </a>
+      <p>Click on the menu icon to open the drawer</p>
+      <p>The drawer stays open if width > 600px</p>
+    </main>
+    <script>
+      /*
+       * Open the drawer when the menu icon is clicked.
+       */
+      var menu = document.querySelector('#menu');
+      var main = document.querySelector('main');
+      var drawer = document.querySelector('.nav');
+
+      menu.addEventListener('click', function(e) {
+        drawer.classList.toggle('open');
+        e.stopPropagation();
+      });
+      main.addEventListener('click', function() {
+        drawer.classList.remove('open');
+      });
+
+    </script>
+  </body>
+</html>
